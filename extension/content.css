@@ -1,0 +1,222 @@
+/* ZenFi floating purchase assistant */
+#zenfi-assistant-root {
+  all: initial;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+#zenfi-assistant-root * {
+  box-sizing: border-box;
+}
+
+.zenfi-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483646;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: #111318;
+  color: #f5f5f7;
+  border: 1px solid #2a2d3a;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(108, 99, 255, 0.15);
+  overflow: hidden;
+  pointer-events: auto;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.zenfi-widget.zenfi-minimized {
+  width: auto;
+  min-width: 48px;
+}
+
+.zenfi-widget.zenfi-minimized .zenfi-body,
+.zenfi-widget.zenfi-minimized .zenfi-product {
+  display: none;
+}
+
+.zenfi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(0, 212, 170, 0.1));
+  border-bottom: 1px solid #2a2d3a;
+  cursor: grab;
+  user-select: none;
+}
+
+.zenfi-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.zenfi-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6c63ff, #00d4aa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+}
+
+.zenfi-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.zenfi-btn-icon {
+  background: transparent;
+  border: none;
+  color: #8a8f9c;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.zenfi-btn-icon:hover {
+  background: #1e2028;
+  color: #f5f5f7;
+}
+
+.zenfi-body {
+  padding: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.zenfi-product {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1e2028;
+}
+
+.zenfi-product img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #1e2028;
+}
+
+.zenfi-product-title {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.zenfi-product-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffb547;
+  margin-top: 4px;
+}
+
+.zenfi-score {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.zf-score-good {
+  background: rgba(0, 212, 170, 0.12);
+  color: #00d4aa;
+  border: 1px solid rgba(0, 212, 170, 0.25);
+}
+
+.zf-score-caution {
+  background: rgba(255, 181, 71, 0.12);
+  color: #ffb547;
+  border: 1px solid rgba(255, 181, 71, 0.25);
+}
+
+.zf-score-bad {
+  background: rgba(255, 92, 92, 0.12);
+  color: #ff5c5c;
+  border: 1px solid rgba(255, 92, 92, 0.25);
+}
+
+.zenfi-insights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.zenfi-insights li {
+  font-size: 11px;
+  line-height: 1.45;
+  color: #8a8f9c;
+  padding: 6px 0;
+  border-bottom: 1px solid #1a1c22;
+}
+
+.zenfi-insights li:last-child {
+  border-bottom: none;
+}
+
+.zenfi-insights li.zenfi-ai {
+  color: #6c63ff;
+  font-weight: 500;
+}
+
+.zenfi-loading {
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: #8a8f9c;
+}
+
+.zenfi-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #2a2d3a;
+  border-top-color: #6c63ff;
+  border-radius: 50%;
+  animation: zenfi-spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes zenfi-spin {
+  to { transform: rotate(360deg); }
+}
+
+.zenfi-login-prompt {
+  font-size: 12px;
+  text-align: center;
+  padding: 12px;
+}
+
+.zenfi-login-prompt a {
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.zenfi-error {
+  font-size: 11px;
+  color: #ff5c5c;
+  padding: 8px;
+  background: rgba(255, 92, 92, 0.08);
+  border-radius: 8px;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenFi</title>
+  <link rel="stylesheet" href="popup.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="popup" id="app">
+    <!-- Login -->
+    <div id="view-login" class="view hidden">
+      <div class="header">
+        <div class="logo">
+          <div class="logo-icon">Z</div>
+          <div>
+            <div class="logo-title">ZenFi</div>
+            <div class="logo-sub">Sign in to continue</div>
+          </div>
+        </div>
+      </div>
+      <form id="login-form" class="form">
+        <input id="login-user" type="text" placeholder="Username" required autocomplete="username" />
+        <input id="login-pass" type="password" placeholder="Password" required autocomplete="current-password" />
+        <button type="submit" class="btn-primary" id="login-btn">Sign in</button>
+      </form>
+      <p class="hint">Use your ZenFi web app credentials.</p>
+      <a class="link" id="open-app" href="http://localhost:5173" target="_blank">Open ZenFi web app →</a>
+    </div>
+
+    <!-- Main -->
+    <div id="view-main" class="view hidden">
+      <div class="header">
+        <div class="logo">
+          <div class="logo-icon">Z</div>
+          <div>
+            <div class="logo-title">ZenFi</div>
+            <div class="logo-sub" id="user-greeting">Assistant</div>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn-ghost" title="Sign out">⎋</button>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-row">
+          <div class="summary-item">
+            <div class="summary-label">This Month</div>
+            <div class="summary-value" id="month-total">₹0</div>
+          </div>
+          <div class="divider-v"></div>
+          <div class="summary-item">
+            <div class="summary-label">Budget Left</div>
+            <div class="summary-value green" id="budget-left">₹0</div>
+          </div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-bar">
+            <div class="progress-fill" id="budget-progress"></div>
+          </div>
+          <div class="progress-label"><span id="budget-pct">0%</span> of budget used</div>
+        </div>
+      </div>
+
+      <div id="purchase-warning" class="warning-card hidden">
+        <div class="warning-title">🛒 Purchase insight</div>
+        <p id="purchase-warning-text" class="warning-text"></p>
+      </div>
+
+      <div class="section-title"><span>🎯</span> Active Goals</div>
+      <div id="goals-list" class="goals-list">
+        <div class="empty-state">No goals yet</div>
+      </div>
+
+      <div class="section-title"><span>⚡</span> Quick Add</div>
+      <form id="expense-form" class="form">
+        <input id="description" type="text" placeholder="Description" required />
+        <div class="form-row">
+          <input id="amount" type="number" placeholder="₹ Amount" min="1" required />
+          <select id="category">
+            <option value="shopping">🛍️ Shopping</option>
+            <option value="food">🍽️ Food</option>
+            <option value="entertainment">🎬 Fun</option>
+            <option value="travel">🚌 Travel</option>
+            <option value="bills">📄 Bills</option>
+            <option value="other">📦 Other</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary" id="submit-btn">
+          <span id="btn-text">Add Expense</span>
+          <span id="btn-spinner" class="spinner hidden"></span>
+        </button>
+      </form>
+
+      <div class="reminder-row">
+        <span>🔔 Daily reminder</span>
+        <label class="toggle">
+          <input type="checkbox" id="reminder-toggle" />
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="footer">
+        <a href="http://localhost:5173" target="_blank" id="footer-link">Open full dashboard →</a>
+      </div>
+    </div>
+
+    <div id="view-loading" class="view loading-view">
+      <span class="spinner"></span> Loading…
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="utils/constants.js"></script>
+  <script src="utils/sanitize.js"></script>
+  <script src="utils/format.js"></script>
+  <script src="utils/storage.js"></script>
+  <script src="services/api.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

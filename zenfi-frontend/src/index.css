@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ─── Dark Theme (default) ──────────────────────────────────── */
+:root, [data-theme="dark"] {
+  --bg-base:       #0A0B0F;
+  --bg-surface:    #111318;
+  --bg-elevated:   #16181F;
+  --bg-sidebar:    #0D0E13;
+  --border:        #1E2028;
+  --border-active: #6C63FF;
+  --primary:       #6C63FF;
+  --secondary:     #00D4AA;
+  --warning:       #FFB547;
+  --danger:        #FF5C5C;
+  --info:          #5CE1E6;
+  --text:          #F5F5F7;
+  --text-muted:    #8A8F9C;
+  --text-dim:      #4A4D5A;
+  color-scheme: dark;
+}
+
+/* ─── Light Theme ────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:       #F4F5F7;
+  --bg-surface:    #FFFFFF;
+  --bg-elevated:   #ECEEF2;
+  --bg-sidebar:    #FFFFFF;
+  --border:        #E2E5EC;
+  --border-active: #6C63FF;
+  --primary:       #6C63FF;
+  --secondary:     #00B894;
+  --warning:       #E17B00;
+  --danger:        #E03E3E;
+  --info:          #0097A7;
+  --text:          #111318;
+  --text-muted:    #5A6070;
+  --text-dim:      #9BA3AF;
+  color-scheme: light;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar            { width: 6px; height: 6px; }
+::-webkit-scrollbar-track      { background: transparent; }
+::-webkit-scrollbar-thumb      { background: #2A2D3A; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #6C63FF55; }
+
+/* ─── Selection ──────────────────────────────────────────────── */
+::selection { background: #6C63FF40; color: #F5F5F7; }
+
+/* ─── Input & Form Resets ────────────────────────────────────── */
+input, textarea, select {
+  font-family: inherit;
+  background-color: var(--bg-surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s;
+  width: 100%;
+  outline: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #6C63FF80;
+  box-shadow: 0 0 0 3px #6C63FF15;
+}
+input::placeholder, textarea::placeholder { color: var(--text-dim); }
+
+select option { background: var(--bg-surface); color: var(--text); }
+
+/* ─── Gradient Text Utility ──────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #6C63FF, #00D4AA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glow Utilities ─────────────────────────────────────────── */
+.glow-primary { box-shadow: 0 0 30px rgba(108, 99, 255, 0.15); }
+.glow-teal    { box-shadow: 0 0 30px rgba(0, 212, 170, 0.15); }
+
+/* ─── Glass Effect ───────────────────────────────────────────── */
+.glass {
+  background: rgba(17, 19, 24, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(30, 32, 40, 0.8);
+}
+
+/* ─── Animated Gradient Border ───────────────────────────────── */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(#111318, #111318) padding-box,
+              linear-gradient(135deg, #6C63FF, #00D4AA) border-box;
+  border: 1px solid transparent;
+  border-radius: 16px;
+}
+
+/* ─── Chat bubble animations ─────────────────────────────────── */
+@keyframes dots {
+  0%, 20%  { color: transparent; text-shadow: 0.25em 0 0 transparent, 0.5em 0 0 transparent; }
+  40%      { color: #8A8F9C;   text-shadow: 0.25em 0 0 transparent, 0.5em 0 0 transparent; }
+  60%      { text-shadow: 0.25em 0 0 #8A8F9C, 0.5em 0 0 transparent; }
+  80%, 100%{ text-shadow: 0.25em 0 0 #8A8F9C, 0.5em 0 0 #8A8F9C; }
+}
+.typing-dots::after {
+  content: '...';
+  animation: dots 1.2s steps(1, end) infinite;
+}
+
+/* ─── Page transition helper ─────────────────────────────────── */
+.page-enter { opacity: 0; transform: translateY(8px); }
+.page-enter-active { opacity: 1; transform: translateY(0); transition: all 0.3s ease; }
+
+/* ─── Desktop sidebar layout offset ─────────────────────────── */
+/* On lg+ screens the sidebar is fixed 256px wide, so main content is offset */
+@media (min-width: 1024px) {
+  .sidebar-offset {
+    margin-left: 256px;
+  }
+}
+
+/* ─── Notification badge pulse ───────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: #6C63FF;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
