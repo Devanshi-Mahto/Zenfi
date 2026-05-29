@@ -33,9 +33,6 @@ Zenfi is a comprehensive personal finance management platform that helps users t
 3. **Extension:**
    - Load `extension/` as an unpacked extension in your browser
 
-## Contributing
-
-Pull requests are welcome. Please open issues for feature requests or bugs.
 
 ## License
 
